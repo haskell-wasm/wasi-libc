@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "libc.h"
 
-static void dummy()
+static void dummy(void)
 {
 }
 
