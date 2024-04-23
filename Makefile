@@ -8,7 +8,7 @@ NM ?= $(patsubst %clang,%llvm-nm,$(filter-out ccache sccache,$(CC)))
 ifeq ($(origin AR), default)
 AR = $(patsubst %clang,%llvm-ar,$(filter-out ccache sccache,$(CC)))
 endif
-EXTRA_CFLAGS ?= -O2 -DNDEBUG
+EXTRA_CFLAGS ?= -O3 -DNDEBUG -mcpu=lime1 -mreference-types -msimd128 -mtail-call -D__wasilibc_simd_string
 # The directory where we build the sysroot.
 SYSROOT ?= $(CURDIR)/sysroot
 # A directory to install to for "make install".
@@ -997,6 +997,7 @@ check-symbols: $(STARTUP_FILES) libc
 	    | grep -v '^#define __\(DBL\|FLT\|LDBL\)_NORM_MAX__' \
 	    | grep -v '^#define NDEBUG' \
 	    | grep -v '^#define __OPTIMIZE__' \
+	    | grep -v '^#define __OPTIMIZE_SIZE__' \
 	    | grep -v '^#define assert' \
 	    | grep -v '^#define __NO_INLINE__' \
 	    | grep -v '^#define __U\?INT.*_C(' \
