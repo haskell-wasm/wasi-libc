@@ -11,7 +11,7 @@ endif
 ifeq ($(DEBUG), true)
 EXTRA_CFLAGS ?= -O0 -g
 else
-EXTRA_CFLAGS ?= -O2 -DNDEBUG
+EXTRA_CFLAGS ?= -O3 -DNDEBUG -mcpu=lime1 -mreference-types -msimd128 -D__wasilibc_simd_string
 endif
 # The directory where we build the sysroot.
 SYSROOT ?= $(CURDIR)/sysroot
@@ -998,6 +998,7 @@ endif
 	    | grep -v '^#define __\(DBL\|FLT\|LDBL\)_NORM_MAX__' \
 	    | grep -v '^#define NDEBUG' \
 	    | grep -v '^#define __OPTIMIZE__' \
+	    | grep -v '^#define __OPTIMIZE_SIZE__' \
 	    | grep -v '^#define assert' \
 	    | grep -v '^#define __NO_INLINE__' \
 	    | grep -v '^#define __U\?INT.*_C(' \

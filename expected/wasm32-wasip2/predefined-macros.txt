@@ -2935,6 +2935,7 @@
 #define __ORDER_LITTLE_ENDIAN__ 1234
 #define __ORDER_PDP_ENDIAN__ 3412
 #define __PDP_ENDIAN 3412
+#define __PIC__ 2
 #define __POINTER_WIDTH__ 32
 #define __PRAGMA_REDEFINE_EXTNAME 1
 #define __PTRDIFF_FMTd__ "ld"
@@ -3263,6 +3264,7 @@
 #define __fts_number_t int64_t
 #define __fts_stat_t struct stat
 #define __inline inline
+#define __pic__ 2
 #define __restrict restrict
 #define __tg_complex(fun,x) (__RETCAST_CX(x)( __FLTCX((x)+I) && __IS_FP(x) ? fun ## f (x) : __LDBLCX((x)+I) ? fun ## l (x) : fun(x) ))
 #define __tg_complex_retreal(fun,x) (__RETCAST_REAL(x)( __FLTCX((x)+I) && __IS_FP(x) ? fun ## f (x) : __LDBLCX((x)+I) ? fun ## l (x) : fun(x) ))
@@ -3347,11 +3349,13 @@
 #define __wasilibc___typedef_suseconds_t_h 
 #define __wasilibc___typedef_time_t_h 
 #define __wasilibc___typedef_uid_t_h 
+#define __wasilibc_simd_string 1
 #define __wasilibc_use_wasip2 1
 #define __wasm 1
 #define __wasm32 1
 #define __wasm32__ 1
 #define __wasm__ 1
+#define __wasm_simd128__ 1
 #define _tolower(a) ((a)|0x20)
 #define _toupper(a) ((a)&0x5f)
 #define acos(x) __tg_real_complex(acos, (x))

@@ -1,5 +1,4 @@
 __addtf3
-__data_end
 __divtf3
 __eqtf2
 __extenddftf2
@@ -10,7 +9,6 @@ __fixunstfsi
 __floatsitf
 __floatunsitf
 __getf2
-__global_base
 __gttf2
 __heap_base
 __heap_end
@@ -19,6 +17,7 @@ __lttf2
 __netf2
 __stack_pointer
 __subtf3
+__table_base
 __trunctfdf2
 __trunctfsf2
 __unordtf2
