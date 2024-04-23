@@ -64,6 +64,8 @@ static size_t dlmalloc_usable_size(void*);
 
 #define MORECORE_CONTIGUOUS 0
 
+#define MALLOC_INSPECT_ALL 1
+
 // Include the upstream dlmalloc's malloc.c.
 #include "malloc.c"
 
@@ -95,6 +97,11 @@ void* aligned_alloc(size_t alignment, size_t bytes) {
 
 size_t malloc_usable_size(void *ptr) {
     return dlmalloc_usable_size(ptr);
+}
+
+void malloc_inspect_all(void (*handler)(void *, void *, size_t, void *),
+                        void *arg) {
+  dlmalloc_inspect_all(handler, arg);
 }
 
 // Define these to satisfy musl references.

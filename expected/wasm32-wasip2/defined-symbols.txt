@@ -956,6 +956,7 @@ lsearch
 lseek
 lstat
 malloc
+malloc_inspect_all
 malloc_usable_size
 mblen
 mbrlen
