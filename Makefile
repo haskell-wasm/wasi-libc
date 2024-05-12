@@ -54,13 +54,6 @@ CLANG_VERSION ?= $(shell ${CC} -dumpversion)
 override OBJDIR := $(OBJDIR)/llvm-lto/$(CLANG_VERSION)
 endif
 
-# When the length is no larger than this threshold, we consider the
-# overhead of bulk memory opcodes to outweigh the performance benefit,
-# and fall back to the original musl implementation. See
-# https://github.com/WebAssembly/wasi-libc/pull/263 for relevant
-# discussion
-BULK_MEMORY_THRESHOLD ?= 32
-
 # Variables from this point on are not meant to be overridable via the
 # make command-line.
 
@@ -720,14 +713,6 @@ $(MUSL_PRINTSCAN_OBJS): CFLAGS += \
 $(MUSL_PRINTSCAN_NO_FLOATING_POINT_OBJS): CFLAGS += \
 	    -D__wasilibc_printscan_no_floating_point \
 	    -D__wasilibc_printscan_floating_point_support_option="\"remove -lc-printscan-no-floating-point from the link command\""
-
-# TODO: apply -mbulk-memory globally, once
-# https://github.com/llvm/llvm-project/issues/52618 is resolved
-$(BULK_MEMORY_OBJS) $(BULK_MEMORY_SO_OBJS): CFLAGS += \
-        -mbulk-memory
-
-$(BULK_MEMORY_OBJS) $(BULK_MEMORY_SO_OBJS): CFLAGS += \
-        -DBULK_MEMORY_THRESHOLD=$(BULK_MEMORY_THRESHOLD)
 
 $(LIBSETJMP_OBJS) $(LIBSETJMP_SO_OBJS): CFLAGS += \
         -mllvm -wasm-enable-sjlj
