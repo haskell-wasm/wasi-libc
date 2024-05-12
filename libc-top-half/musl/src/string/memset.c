@@ -4,8 +4,7 @@
 void *memset(void *dest, int c, size_t n)
 {
 #if defined(__wasm_bulk_memory__)
-	if (n > BULK_MEMORY_THRESHOLD)
-		return __builtin_memset(dest, c, n);
+	return __builtin_memset(dest, c, n);
 #endif
 	unsigned char *s = dest;
 	size_t k;
