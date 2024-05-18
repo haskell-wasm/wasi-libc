@@ -1,6 +1,7 @@
 // This file is a wrapper around malloc.c, which is the upstream source file.
 // It sets configuration flags and controls which symbols are exported.
 
+#include <stdalign.h>
 #include <stddef.h>
 #include <malloc.h>
 
@@ -27,8 +28,8 @@
 #define NO_MALLINFO 1
 #define NO_MALLOC_STATS 1
 
-// Align malloc regions to 16, to avoid unaligned SIMD accesses.
-#define MALLOC_ALIGNMENT 16
+// Conform to C standard requirement
+#define MALLOC_ALIGNMENT alignof(max_align_t)
 
 // Declare errno values used by dlmalloc. We define them like this to avoid
 // putting specific errno values in the ABI.
