@@ -60,6 +60,10 @@ extern const int __EINVAL;
 // This isn't declared with DLMALLOC_EXPORT so make it static explicitly.
 static size_t dlmalloc_usable_size(void*);
 
+#define INSECURE 1
+
+#define MORECORE_CONTIGUOUS 0
+
 // Include the upstream dlmalloc's malloc.c.
 #include "malloc.c"
 
