@@ -640,6 +640,7 @@ builtins: $(BUILTINS_LIB_PATH)
 $(SYSROOT_LIB)/libc.so: $(OBJDIR)/libc.so.a $(BUILTINS_LIB_PATH)
 	$(CC) --target=${TARGET_TRIPLE} -nodefaultlibs \
 	-shared --sysroot=$(SYSROOT) \
+	-Wl,--Bsymbolic,--keep-section=target_features,--strip-all \
 	-o $@ -Wl,--whole-archive $< -Wl,--no-whole-archive \
 	-Wl,--allow-undefined-file=linker-provided-symbols.txt \
 	$(BUILTINS_LIB_PATH) \
@@ -654,6 +655,7 @@ $(SYSROOT_LIB)/libc.so: $(OBJDIR)/libc.so.a $(BUILTINS_LIB_PATH)
 $(SYSROOT_LIB)/%.so: $(OBJDIR)/%.so.a $(SYSROOT_LIB)/libc.so
 	$(CC) --target=${TARGET_TRIPLE} \
 	-shared --sysroot=$(SYSROOT) \
+	-Wl,--Bsymbolic,--keep-section=target_features,--strip-all \
 	-o $@ -Wl,--whole-archive $< -Wl,--no-whole-archive \
 	-Wl,--allow-undefined-file=linker-provided-symbols.txt \
 	-resource-dir $(TMP_RESOURCE_DIR) \
