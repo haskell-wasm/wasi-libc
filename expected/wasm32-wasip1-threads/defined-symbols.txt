@@ -175,6 +175,7 @@ __month_to_secs
 __newlocale
 __nl_langinfo
 __nl_langinfo_l
+__notatty
 __ofl_add
 __ofl_lock
 __ofl_unlock

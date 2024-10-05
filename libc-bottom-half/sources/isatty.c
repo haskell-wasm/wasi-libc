@@ -19,4 +19,13 @@ int __isatty(int fd) {
 
     return 1;
 }
-extern __typeof(__isatty) isatty __attribute__((weak, alias("__isatty")));
+
+// The public-facing isatty should always return ENOTTY. Otherwise
+// false positives cause much suffering.
+int __notatty(int fd);
+int __notatty(int fd) {
+    errno = __WASI_ERRNO_NOTTY;
+    return 0;
+}
+
+extern __typeof(__notatty) isatty __attribute__((weak, alias("__notatty")));
