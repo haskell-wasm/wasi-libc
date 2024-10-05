@@ -87,6 +87,9 @@ int __isatty(int fd) {
   return 0;
 #else
 
+    errno = __WASI_ERRNO_NOTTY;
+    return 0;
+
     __wasi_fdstat_t statbuf;
     int r = __wasi_fd_fdstat_get(fd, &statbuf);
     if (r != 0) {
@@ -109,4 +112,3 @@ weak_alias(__isatty, isatty);
 #else
 extern __typeof(__isatty) isatty __attribute__((weak, alias("__isatty")));
 #endif
-
