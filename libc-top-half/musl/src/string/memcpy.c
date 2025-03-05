@@ -4,7 +4,7 @@
 
 void *memcpy(void *restrict dest, const void *restrict src, size_t n)
 {
-#if defined(__wasm_bulk_memory__)
+#if defined(__wasm_bulk_memory_opt__)
 	return __builtin_memcpy(dest, src, n);
 #endif
 	unsigned char *d = dest;

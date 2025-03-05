@@ -3,7 +3,7 @@
 
 void *memset(void *dest, int c, size_t n)
 {
-#if defined(__wasm_bulk_memory__)
+#if defined(__wasm_bulk_memory_opt__)
 	return __builtin_memset(dest, c, n);
 #endif
 	unsigned char *s = dest;
